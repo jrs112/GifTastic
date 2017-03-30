@@ -1,13 +1,18 @@
 $(document).ready(function(){
 
-    var topics = ["Simpsons", "Bobs Burgers", "The Wire"];
+    var topics = ["Simpsons", "Bobs Burgers", "The Wire", "Twenty Four", "King of the Hill"];
 
     function displayTvShow() {
+        $(".gifDisplayOne").empty();
+        $(".gifDisplayTwo").empty();
+        $(".gifDisplayThree").empty();
         var tvShow = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=10";
+        var queryURLOne = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=4";
+        var queryURLTwo = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=7";
+        var queryURLThree = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=10";
 
         $.ajax({
-          url: queryURL,
+          url: queryURLOne,
           method: "GET"
         }).done(function(response) {
             var results = response.data;
@@ -24,7 +29,51 @@ $(document).ready(function(){
                 gifImage.addClass("giffy");
                 gifDiv.append(gifImage);
                 gifDiv.append(p);
-                $(".gifDisplay").prepend(gifDiv);
+                $(".gifDisplayOne").prepend(gifDiv);
+            }
+        });
+
+          $.ajax({
+          url: queryURLTwo,
+          method: "GET"
+        }).done(function(response) {
+            var results = response.data;
+            for (var i = 4; i < results.length; i++) {
+                var gifDivTwo = $("<div>");
+                var ratingTwo = results[i].rating
+                var pTwo = $("<p>").text("Rating: " + ratingTwo);
+                var animated = results[i].images.fixed_height.url;
+                var still = results[i].images.fixed_height_still.url;
+                var gifImageTwo = $("<img>");
+                gifImageTwo.attr("src", still);
+                gifImageTwo.attr("data-still", still)
+                gifImageTwo.attr("data-animated", animated)
+                gifImageTwo.addClass("giffy");
+                gifDivTwo.append(gifImageTwo);
+                gifDivTwo.append(pTwo);
+                $(".gifDisplayTwo").prepend(gifDivTwo);
+            }
+        });
+
+        $.ajax({
+          url: queryURLThree,
+          method: "GET"
+        }).done(function(response) {
+            var results = response.data;
+            for (var i = 7; i < results.length; i++) {
+                var gifDivThree = $("<div>");
+                var ratingThree = results[i].rating
+                var pThree = $("<p>").text("Rating: " + ratingThree);
+                var animated = results[i].images.fixed_height.url;
+                var still = results[i].images.fixed_height_still.url;
+                var gifImageThree = $("<img>");
+                gifImageThree.attr("src", still);
+                gifImageThree.attr("data-still", still)
+                gifImageThree.attr("data-animated", animated)
+                gifImageThree.addClass("giffy");
+                gifDivThree.append(gifImageThree);
+                gifDivThree.append(pThree);
+                $(".gifDisplayThree").prepend(gifDivThree);
             }
         });
     }

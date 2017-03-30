@@ -1,5 +1,6 @@
 body {
-background-color: #6699FF;
+/*background-color: #6699FF;*/
+background-image: url("http://weknowyourdreams.com/images/sky/sky-01.jpg");
 }
 
 .container {
@@ -12,6 +13,7 @@ h1 {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: black;
+  font-size: 50px;
   font-family: 'Merriweather', serif;
 
 }
@@ -51,4 +53,10 @@ h1 {
 
 p {
   color: black;
+  margin-left: 45px;
+}
+img {
+  height: 250px;
+  width: 275px;
+  margin-left: 45px;
 }
