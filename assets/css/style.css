@@ -1,6 +1,7 @@
 body {
 /*background-color: #6699FF;*/
-background-image: url("http://weknowyourdreams.com/images/sky/sky-01.jpg");
+background-image: url("../images/sky.jpg");
+background-size: 100%;
 }
 
 .container {
