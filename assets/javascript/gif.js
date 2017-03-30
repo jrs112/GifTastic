@@ -33,9 +33,9 @@ $(document).ready(function(){
             }
         });
 
-          $.ajax({
-          url: queryURLTwo,
-          method: "GET"
+        $.ajax({
+        url: queryURLTwo,
+        method: "GET"
         }).done(function(response) {
             var results = response.data;
             for (var i = 4; i < results.length; i++) {
