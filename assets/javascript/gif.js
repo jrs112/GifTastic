@@ -1,15 +1,15 @@
 $(document).ready(function(){
 
-    var topics = ["Simpsons", "Bobs Burgers", "The Wire", "Twenty Four", "King of the Hill"];
+    var topics = ["Kittens", "Bobs Burgers", "Puppies", "Twenty Four", "Funny", "King of the Hill"];
 
     function displayTvShow() {
         $(".gifDisplayOne").empty();
         $(".gifDisplayTwo").empty();
         $(".gifDisplayThree").empty();
         var tvShow = $(this).attr("data-name");
-        var queryURLOne = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=4";
-        var queryURLTwo = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=7";
-        var queryURLThree = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=10";
+        var queryURLOne = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=8";
+        var queryURLTwo = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=16";
+        var queryURLThree = "https://api.giphy.com/v1/gifs/search?q=" + tvShow + "&api_key=dc6zaTOxFJmzC&limit=24";
 
         $.ajax({
           url: queryURLOne,
@@ -38,7 +38,7 @@ $(document).ready(function(){
         method: "GET"
         }).done(function(response) {
             var results = response.data;
-            for (var i = 4; i < results.length; i++) {
+            for (var i = 8; i < results.length; i++) {
                 var gifDivTwo = $("<div>");
                 var ratingTwo = results[i].rating
                 var pTwo = $("<p>").text("Rating: " + ratingTwo);
@@ -60,7 +60,7 @@ $(document).ready(function(){
           method: "GET"
         }).done(function(response) {
             var results = response.data;
-            for (var i = 7; i < results.length; i++) {
+            for (var i = 16; i < results.length; i++) {
                 var gifDivThree = $("<div>");
                 var ratingThree = results[i].rating
                 var pThree = $("<p>").text("Rating: " + ratingThree);
@@ -104,13 +104,13 @@ $(document).ready(function(){
     $(document).on("click", ".giffy", function(event) {
         event.preventDefault();
         var state = $(this).attr("data-state");
-        if (state === "still") {
-            $(this).attr("src", $(this).data("animated"));
-            $(this).attr("data-state", "animated");
-        }
-        else {
+        if (state === "animated") {
             $(this).attr("src", $(this).data("still"));
             $(this).attr("data-state", "still");
+        }
+        else {
+            $(this).attr("src", $(this).data("animated"));
+            $(this).attr("data-state", "animated");
         }
     });
 
